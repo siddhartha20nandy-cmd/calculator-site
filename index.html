@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Age Calculator – Free Online Tool</title>
+  <meta name="description" content="Free online age calculator to calculate your exact age in years, months and days instantly.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f2f2f2;
+    }
+    .container {
+      max-width: 400px;
+      background: white;
+      padding: 20px;
+      margin: 60px auto;
+      border-radius: 8px;
+      text-align: center;
+    }
+    input, button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+    }
+    button {
+      background: #007bff;
+      color: white;
+      border: none;
+    }
+    #result {
+      margin-top: 15px;
+      font-weight: bold;
+    }
+    p {
+      font-size: 14px;
+      color: #555;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>Age Calculator</h1>
+    <p>Enter your date of birth to calculate your exact age.</p>
+
+    <input type="date" id="dob">
+    <button onclick="calculateAge()">Calculate Age</button>
+
+    <div id="result"></div>
+
+    <p>
+      This free age calculator helps students, job seekers and anyone to find their exact age easily.
+    </p>
+  </div>
+
+  <script>
+    function calculateAge() {
+      const dob = document.getElementById("dob").value;
+      const result = document.getElementById("result");
+
+      if (!dob) {
+        result.innerHTML = "Please select your date of birth.";
+        return;
+      }
+
+      const birthDate = new Date(dob);
+      const today = new Date();
+
+      let years = today.getFullYear() - birthDate.getFullYear();
+      let months = today.getMonth() - birthDate.getMonth();
+      let days = today.getDate() - birthDate.getDate();
+
+      if (days < 0) {
+        months--;
+        days += 30;
+      }
+
+      if (months < 0) {
+        years--;
+        months += 12;
+      }
+
+      result.innerHTML =
+        "Your Age is " + years + " years, " + months + " months, and " + days + " days.";
+    }
+  </script>
+</body>
+</html>
